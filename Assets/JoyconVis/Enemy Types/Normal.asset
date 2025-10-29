@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f132394e1f03d0543aebc6591aa4134f, type: 3}
-  m_Name: EnemyData
+  m_Name: Normal
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: Big Boy
   tier: 1
   health: 100
   speed: 2
-  size: 1
-  sprite: {fileID: 0}
+  size: 10
+  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}

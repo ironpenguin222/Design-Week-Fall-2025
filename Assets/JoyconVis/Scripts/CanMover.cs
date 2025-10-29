@@ -96,6 +96,8 @@ public class CanMover : MonoBehaviour
 
 
             }
+
+            
             // GetButtonDown checks if a button has been released
             if (j.GetButtonUp(Joycon.Button.SHOULDER_2))
             {
