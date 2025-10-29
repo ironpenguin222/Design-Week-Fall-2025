@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f132394e1f03d0543aebc6591aa4134f, type: 3}
-  m_Name: Normal
+  m_Name: 1Normal
   m_EditorClassIdentifier: 
   enemyName: Big Boy
   tier: 1

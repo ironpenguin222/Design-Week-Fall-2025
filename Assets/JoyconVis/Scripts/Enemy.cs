@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
         currentHealth = data.health;
 
-        transform.localScale = Vector3.one * data.size;
+        transform.localScale = transform.localScale * data.size;
 
         rend = GetComponent<Renderer>();
         originalColor = rend.material.color;

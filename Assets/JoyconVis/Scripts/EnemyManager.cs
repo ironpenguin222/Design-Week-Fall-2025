@@ -73,7 +73,7 @@ public class EnemyManager : MonoBehaviour
 
         EnemyData chosen = availableEnemies[Random.Range(0, availableEnemies.Count)];
         float x = Random.Range(spawnXRange.x, spawnXRange.y);
-        Vector3 pos = new Vector3(x, 0f, spawnZ);
+        Vector3 pos = new Vector3(x, 0.8f, spawnZ);
 
         GameObject obj = Instantiate(enemyPrefab, pos, Quaternion.identity);
         Enemy enemyScript = obj.GetComponent<Enemy>();
@@ -82,7 +82,7 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnBoss()
     {
-        Vector3 pos = new Vector3(0f, 0f, spawnZ);
+        Vector3 pos = new Vector3(0f, 2f, spawnZ);
         GameObject boss = Instantiate(enemyPrefab, pos, Quaternion.identity);
         Enemy enemyScript = boss.GetComponent<Enemy>();
         enemyScript.Initialize(bossEnemy, player);

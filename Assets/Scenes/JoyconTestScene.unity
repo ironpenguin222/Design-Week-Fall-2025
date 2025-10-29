@@ -1694,7 +1694,12 @@ MonoBehaviour:
   enemyPool:
   - {fileID: 11400000, guid: 1206a867245e2994b8a3ddec59009cb5, type: 2}
   - {fileID: 11400000, guid: e632d6ba98d8eb545b0ecf66fc0526a9, type: 2}
+  - {fileID: 11400000, guid: 103779fb5bce9b641a2b0438bdf0eba2, type: 2}
   - {fileID: 11400000, guid: 7bd0cb8196b906948985742087fbf85c, type: 2}
+  - {fileID: 11400000, guid: 4045268d623f526429a066271872c1b4, type: 2}
+  - {fileID: 11400000, guid: 162c3a8a7eb4e6a41ba29daa6661f956, type: 2}
+  - {fileID: 11400000, guid: 0d8374a19be68a641b1d2428d0c1999b, type: 2}
+  - {fileID: 11400000, guid: 64097423e67e67d4eb6910d38addcfd3, type: 2}
   bossEnemy: {fileID: 11400000, guid: 64097423e67e67d4eb6910d38addcfd3, type: 2}
   enemyPrefab: {fileID: 8926995292765916233, guid: 4e0d8c46c4013ea4eae429fbf674ef59, type: 3}
   player: {fileID: 1333252200}
