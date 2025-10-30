@@ -17,4 +17,4 @@ MonoBehaviour:
   health: 300
   speed: 2
   size: 0.7
-  sprite: {fileID: 21300000, guid: ed3a396cce8a0c64183882fb4aa6d4c6, type: 3}
+  sprite: {fileID: 21300000, guid: 10f2a41d74b8a0848b213433be9dea74, type: 3}

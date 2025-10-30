@@ -144,7 +144,7 @@ public class CanMover : MonoBehaviour
             float shakeIntensity = shake.magnitude;
             if (shakeIntensity > shakeThreshold)
             {
-                shakeMeter += shakeIntensity * Time.deltaTime * 50f;
+                shakeMeter += shakeIntensity * Time.deltaTime * 85f;
             }
 
             shakeMeter = Mathf.Max(0, shakeMeter - shakeDecay * Time.deltaTime);

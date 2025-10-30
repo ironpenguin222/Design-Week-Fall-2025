@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Small Zombie
   tier: 3
   health: 20
-  speed: 6
+  speed: 5
   size: 0.4
   sprite: {fileID: 21300000, guid: ed3a396cce8a0c64183882fb4aa6d4c6, type: 3}
