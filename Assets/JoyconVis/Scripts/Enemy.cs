@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         {
             PlayerHealth ph = other.GetComponent<PlayerHealth>();
             if (ph != null)
-                ph.TakeDamage(1);
+                ph.TakeDamage(ph.currentHealth);
             stealing = true;
             StartCoroutine(StealPizza());
             
@@ -97,6 +97,10 @@ public class Enemy : MonoBehaviour
         rend.enabled = false;
         transform.position = new Vector3 (50f, 50f, 0f);
         audios.Play(0);
+        if (data.isBoss)
+        {
+           PlayerHealth.isWin = true;
+        }
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }

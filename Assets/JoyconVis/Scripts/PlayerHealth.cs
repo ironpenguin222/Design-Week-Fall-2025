@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class PlayerHealth : MonoBehaviour
 {
     public List<Image> healthDots;
-    private int currentHealth;
+    public int currentHealth = 3;
     public PlayerDeath dm;
     public static bool isDead = false;
+    public static bool isWin = false;
 
     void Start()
     {

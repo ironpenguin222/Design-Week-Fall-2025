@@ -10,4 +10,5 @@ public class EnemyData : ScriptableObject
     public float size = 1f;
     public Sprite sprite;
     public AudioClip entranceClip;
+    public bool isBoss;
 }

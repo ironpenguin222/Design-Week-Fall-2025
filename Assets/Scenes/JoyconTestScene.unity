@@ -438,6 +438,7 @@ MonoBehaviour:
   isStart: 1
   em: {fileID: 1499955881}
   menu: {fileID: 1104427175}
+  winScreen: {fileID: 0}
   UI: {fileID: 568127693}
   sprayHitbox: {fileID: 3572550195359921439, guid: 08e6edaba33f30942830462299704253, type: 3}
   sprayPoint: {fileID: 2003442956}
@@ -2464,6 +2465,7 @@ MonoBehaviour:
   - {fileID: 568127695}
   - {fileID: 1904979798}
   - {fileID: 900352513}
+  currentHealth: 0
   dm: {fileID: 154774628}
 --- !u!1 &1370502894
 GameObject:
@@ -3744,6 +3746,7 @@ MonoBehaviour:
   - {fileID: 568127695}
   - {fileID: 1904979798}
   - {fileID: 900352513}
+  currentHealth: 0
   dm: {fileID: 154774628}
 --- !u!54 &1732650685
 Rigidbody:
@@ -4529,15 +4532,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: dddb151e1802a264296080c40b1d1145, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

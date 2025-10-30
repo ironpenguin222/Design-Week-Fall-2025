@@ -32,6 +32,7 @@ public class CanMover : MonoBehaviour
     public bool isStart = true;
     public EnemyManager em;
     public GameObject menu;
+    public GameObject winScreen;
     public GameObject UI;
 
     [Header("Spray")]
@@ -86,6 +87,10 @@ public class CanMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerHealth.isWin) {
+            winScreen.SetActive(true);
+        }
+
         // make sure the Joycon only gets checked if attached
         if (joycons.Count > index)
         {
@@ -106,6 +111,15 @@ public class CanMover : MonoBehaviour
                     SceneManager.LoadScene(currentSceneName);
                     PlayerHealth.isDead = false;
                     j.SetRumble(0, 0, 0, 0);
+                    return;
+                }
+                if (PlayerHealth.isWin)
+                {
+                    string currentSceneName = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(currentSceneName);
+                    PlayerHealth.isWin = false;
+                    j.SetRumble(0, 0, 0, 0);
+                    winScreen.SetActive(false);
                     return;
                 }
                 if (isStart)
