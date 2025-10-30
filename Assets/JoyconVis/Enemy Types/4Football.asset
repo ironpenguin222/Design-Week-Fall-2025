@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Football Zombie
   tier: 4
-  health: 200
-  speed: 4
+  health: 90
+  speed: 3.5
   size: 0.9
-  sprite: {fileID: 21300000, guid: ed3a396cce8a0c64183882fb4aa6d4c6, type: 3}
+  sprite: {fileID: 21300000, guid: a2e51bdbd926e7b4ba4a9cb63103d33c, type: 3}
+  entranceClip: {fileID: 8300000, guid: 5b1a7d6c860d8c041ac9b6a76b24c24e, type: 3}

@@ -8,6 +8,7 @@ public class ShakeUIManager : MonoBehaviour
     public CanMover canMover;
 
     public Slider shakeMeter;
+    public Slider delayMeter;
 
     public float maxShake = 100f;
 

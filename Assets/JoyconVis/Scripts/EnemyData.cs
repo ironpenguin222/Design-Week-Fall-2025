@@ -9,4 +9,5 @@ public class EnemyData : ScriptableObject
     public float speed = 2f;
     public float size = 1f;
     public Sprite sprite;
+    public AudioClip entranceClip;
 }

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Small Zombie
   tier: 3
-  health: 20
-  speed: 5
-  size: 0.4
-  sprite: {fileID: 21300000, guid: ed3a396cce8a0c64183882fb4aa6d4c6, type: 3}
+  health: 10
+  speed: 4
+  size: 0.3
+  sprite: {fileID: 21300000, guid: 57cdb5cf66bd1784f8ac2b47ed05cf90, type: 3}
+  entranceClip: {fileID: 8300000, guid: dbce3ffe43e58d34089b6c3fb8ce2ade, type: 3}

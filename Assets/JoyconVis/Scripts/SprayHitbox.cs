@@ -22,16 +22,27 @@ public class SprayHitbox : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy != null && !enemy.isHit)
             {
-                enemy.TakeDamage(damageMultiplier);
-                Debug.Log(damageMultiplier);
+                enemy.TakeDamage(30);
+                enemy.isHit = true;
                 enemiesHit++;
                 Debug.Log(enemiesHit);
                 if (enemiesHit > pierce)
                 {
                     Destroy(gameObject);
                 }
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy.isHit)
+            {
+                enemy.isHit = false;
             }
         }
     }

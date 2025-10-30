@@ -26,13 +26,19 @@ public class CanMover : MonoBehaviour
     private Vector3 lastAccel;
     public float shakeThreshold = 2.0f;
     public float shakeMeter = 1.0f;
+    public float timeBetween = 0.4f;
+
     public float shakeDecay = 0.0f;
+    public bool isStart = true;
+    public EnemyManager em;
+    public GameObject menu;
+    public GameObject UI;
 
     [Header("Spray")]
     public GameObject sprayHitbox;
     public Transform sprayPoint;
     public float sprayStrength = 10f;
-
+    public bool shook;
 
     [ContextMenu("Recenter")]
     void Recenter()
@@ -74,7 +80,7 @@ public class CanMover : MonoBehaviour
             rb.linearVelocity = sprayPoint.forward * speedMultiplier * sprayStrength;
         }
 
-        shakeMeter = Mathf.Max(0, shakeMeter - 100f * charge);
+       
     }
 
     // Update is called once per frame
@@ -92,7 +98,7 @@ public class CanMover : MonoBehaviour
             }
 
             // GetButtonDown checks if a button has been pressed (not held)
-            if (j.GetButtonDown(Joycon.Button.SHOULDER_2) && shakeMeter > 0)
+            if (j.GetButtonDown(Joycon.Button.DPAD_UP) && shakeMeter >= 25)
             {
                 if (PlayerHealth.isDead)
                 {
@@ -102,13 +108,28 @@ public class CanMover : MonoBehaviour
                     j.SetRumble(0, 0, 0, 0);
                     return;
                 }
-                j.Recenter();
-                StartCoroutine(ShootDelay());
+                if (isStart)
+                {
+                    em.StartWaves();
+                    menu.SetActive(false);
+                    UI.SetActive(true);
+                    isStart = false;
+                    return;
+                }
+                if (!shook)
+                {
+                    shakeMeter = shakeMeter - 25f;
+                    shook = true;
+                    j.Recenter();
+                    StartCoroutine(ShootDelay());
+                }
             }
 
             IEnumerator ShootDelay(){
-                yield return new WaitForSeconds(0.7f);
+               
+                yield return new WaitForSeconds(timeBetween);
                 ShootSpray();
+                shook = false;
             }
 
             
@@ -144,7 +165,7 @@ public class CanMover : MonoBehaviour
             float shakeIntensity = shake.magnitude;
             if (shakeIntensity > shakeThreshold)
             {
-                shakeMeter += shakeIntensity * Time.deltaTime * 85f;
+                shakeMeter += shakeIntensity * Time.deltaTime * 150f;
             }
 
             shakeMeter = Mathf.Max(0, shakeMeter - shakeDecay * Time.deltaTime);

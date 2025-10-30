@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
 
     private int currentWave = 0;
 
-    void Start()
+    public void StartWaves()
     {
         StartCoroutine(WaveRoutine());
     }

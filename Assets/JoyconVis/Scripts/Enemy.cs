@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public EnemyData data;
     private Transform player;
     private float currentHealth;
-
+    public bool isHit;
     private Renderer rend;
     private Color originalColor;
 
@@ -15,13 +15,15 @@ public class Enemy : MonoBehaviour
     private float bobSpeed = 2f;
     private float bobHeight = 0.2f;
     private Vector3 startPos;
-
+    private bool stealing;
+    public AudioSource audios;
     public void Initialize(EnemyData enemyData, Transform playerTransform)
     {
         data = enemyData;
         player = playerTransform;
         nameText.text = data.enemyName;
-
+        audios.clip = data.entranceClip;
+        
         currentHealth = data.health;
 
         Debug.Log(data.enemyName + currentHealth);
@@ -51,6 +53,12 @@ public class Enemy : MonoBehaviour
         transform.position = new Vector3(transform.position.x,
             startPos.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight,
             transform.position.z);
+
+        if (stealing)
+        {
+            Vector3 newDir = new Vector3(-8f, 0f, -3f);
+            transform.position += newDir * (data.speed * 0.5f) * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,9 +68,16 @@ public class Enemy : MonoBehaviour
             PlayerHealth ph = other.GetComponent<PlayerHealth>();
             if (ph != null)
                 ph.TakeDamage(1);
-
-            Destroy(gameObject);
+            stealing = true;
+            StartCoroutine(StealPizza());
+            
         }
+    }
+
+    IEnumerator StealPizza()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 
     public void TakeDamage(float amount)
@@ -71,9 +86,19 @@ public class Enemy : MonoBehaviour
 
         if (rend != null)
             StartCoroutine(FlashRed());
-
+        Debug.Log(currentHealth);
         if (currentHealth <= 0)
-            Destroy(gameObject);
+            
+        StartCoroutine(Dying());
+    }
+
+    private IEnumerator Dying()
+    {
+        rend.enabled = false;
+        transform.position = new Vector3 (50f, 50f, 0f);
+        audios.Play(0);
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 
     private IEnumerator FlashRed()

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 4Scuba
   m_EditorClassIdentifier: 
   enemyName: Scuba Zombie
-  tier: 4
-  health: 300
+  tier: 10
+  health: 240
   speed: 2
   size: 0.7
   sprite: {fileID: 21300000, guid: 10f2a41d74b8a0848b213433be9dea74, type: 3}
+  entranceClip: {fileID: 8300000, guid: ef3fea8ac1610e146b9a8d2d42f265ee, type: 3}

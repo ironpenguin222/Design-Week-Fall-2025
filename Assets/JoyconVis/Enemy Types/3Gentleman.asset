@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Gentleman
   tier: 3
-  health: 200
-  speed: 2
+  health: 90
+  speed: 1.7
   size: 0.7
-  sprite: {fileID: 21300000, guid: ed3a396cce8a0c64183882fb4aa6d4c6, type: 3}
+  sprite: {fileID: 21300000, guid: 4c7c8d72bb7f96440ae0d9dc62db2455, type: 3}
+  entranceClip: {fileID: 8300000, guid: 2dc5cabffda05de4a8fa34d971a163ec, type: 3}
