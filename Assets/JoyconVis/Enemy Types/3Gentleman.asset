@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f132394e1f03d0543aebc6591aa4134f, type: 3}
   m_Name: 3Gentleman
   m_EditorClassIdentifier: 
-  enemyName: Big Boy
+  enemyName: Gentleman
   tier: 3
   health: 200
   speed: 2
-  size: 10
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  size: 0.7
+  sprite: {fileID: 21300000, guid: ed3a396cce8a0c64183882fb4aa6d4c6, type: 3}

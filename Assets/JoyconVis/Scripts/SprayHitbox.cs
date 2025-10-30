@@ -4,14 +4,16 @@ using UnityEngine;
 public class SprayHitbox : MonoBehaviour
 {
     private float lifetime = 0.5f;
-    public float shakeAmount = 50f;
+    public float shakeAmount;
     private float enemiesHit;
     public float pierce = 1;
+    float damageMultiplier;
 
-    void Start()
+    public void SetCharge(float charge)
     {
-        float damageMultiplier = Mathf.Lerp(50f, 200f, shakeAmount);
-        lifetime = Mathf.Lerp(0.1f, 1.5f, shakeAmount);
+        float normalized = Mathf.Clamp01(charge);
+        damageMultiplier = Mathf.Lerp(35f, 150f, normalized);
+        lifetime = Mathf.Lerp(0.1f, 1.5f, normalized);
         Destroy(gameObject, lifetime);
     }
 
@@ -22,7 +24,8 @@ public class SprayHitbox : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(shakeAmount);
+                enemy.TakeDamage(damageMultiplier);
+                Debug.Log(damageMultiplier);
                 enemiesHit++;
                 Debug.Log(enemiesHit);
                 if (enemiesHit > pierce)

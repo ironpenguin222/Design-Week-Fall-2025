@@ -60,10 +60,13 @@ public class CanMover : MonoBehaviour
         float charge = Mathf.Clamp(shakeMeter / 100f, 0.1f, 1f);
         float sizeMultiplier = Mathf.Lerp(0.5f, 2.5f, charge);
         float speedMultiplier = Mathf.Lerp(5f, 25f, charge);
-
+        Joycon j = joycons[index];
+        j.SetRumble(160, 320, 0.6f, 200);
         GameObject hitbox = Instantiate(sprayHitbox, sprayPoint.position, sprayPoint.rotation);
         hitbox.transform.localScale *= sizeMultiplier;
 
+        SprayHitbox hitboxScript = hitbox.GetComponent<SprayHitbox>();
+            hitboxScript.SetCharge(charge);
 
         Rigidbody rb = hitbox.GetComponent<Rigidbody>();
         if (rb != null)
@@ -91,22 +94,31 @@ public class CanMover : MonoBehaviour
             // GetButtonDown checks if a button has been pressed (not held)
             if (j.GetButtonDown(Joycon.Button.SHOULDER_2) && shakeMeter > 0)
             {
+                if (PlayerHealth.isDead)
+                {
+                    string currentSceneName = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(currentSceneName);
+                    PlayerHealth.isDead = false;
+                    j.SetRumble(0, 0, 0, 0);
+                    return;
+                }
                 j.Recenter();
+                StartCoroutine(ShootDelay());
+            }
+
+            IEnumerator ShootDelay(){
+                yield return new WaitForSeconds(0.7f);
                 ShootSpray();
-
-
             }
 
             
             // GetButtonDown checks if a button has been released
             if (j.GetButtonUp(Joycon.Button.SHOULDER_2))
             {
-                Debug.Log("Shoulder button 2 released");
             }
             // GetButtonDown checks if a button is currently down (pressed or held)
             if (j.GetButton(Joycon.Button.SHOULDER_2))
             {
-                Debug.Log("Shoulder button 2 held");
             }
 
             if (j.GetButtonDown(Joycon.Button.DPAD_DOWN))

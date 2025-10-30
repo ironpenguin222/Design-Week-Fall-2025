@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     private Renderer rend;
     private Color originalColor;
 
+    public TextMeshProUGUI nameText;
     private float bobSpeed = 2f;
     private float bobHeight = 0.2f;
     private Vector3 startPos;
@@ -18,8 +20,11 @@ public class Enemy : MonoBehaviour
     {
         data = enemyData;
         player = playerTransform;
+        nameText.text = data.enemyName;
 
         currentHealth = data.health;
+
+        Debug.Log(data.enemyName + currentHealth);
 
         transform.localScale = transform.localScale * data.size;
 
