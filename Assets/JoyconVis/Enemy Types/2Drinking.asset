@@ -17,7 +17,7 @@ MonoBehaviour:
   health: 30
   speed: 2.5
   size: 0.8
-  sprite: {fileID: 21300000, guid: 57cdb5cf66bd1784f8ac2b47ed05cf90, type: 3}
+  sprite: {fileID: 21300000, guid: 5f9471ad00059c044a71d442736c321c, type: 3}
   entranceClip: {fileID: 8300000, guid: fc7708614b5dabc47a0840b938ac8a79, type: 3}
   isBoss: 0
   zigzag: 1
