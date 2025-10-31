@@ -11,4 +11,7 @@ public class EnemyData : ScriptableObject
     public Sprite sprite;
     public AudioClip entranceClip;
     public bool isBoss;
+    public bool zigzag;
+    public float zigzagAmplitude = 1f;
+    public float zigzagFrequency = 2f;
 }

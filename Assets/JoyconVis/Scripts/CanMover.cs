@@ -27,6 +27,7 @@ public class CanMover : MonoBehaviour
     public float shakeThreshold = 2.0f;
     public float shakeMeter = 1.0f;
     public float timeBetween = 0.4f;
+    public ShakeUIManager shakeUIManager;
 
     public float shakeDecay = 0.0f;
     public bool isStart = true;
@@ -34,6 +35,7 @@ public class CanMover : MonoBehaviour
     public GameObject menu;
     public GameObject winScreen;
     public GameObject UI;
+    public AudioSource ac;
 
     [Header("Spray")]
     public GameObject sprayHitbox;
@@ -60,6 +62,8 @@ public class CanMover : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Joycon j = joycons[index];
+        j.SetRumble(0, 0, 0, 0);
     }
 
     void ShootSpray()
@@ -105,6 +109,7 @@ public class CanMover : MonoBehaviour
             // GetButtonDown checks if a button has been pressed (not held)
             if (j.GetButtonDown(Joycon.Button.DPAD_UP) && shakeMeter >= 25)
             {
+                ac.Play();
                 if (PlayerHealth.isDead)
                 {
                     string currentSceneName = SceneManager.GetActiveScene().name;
@@ -139,14 +144,28 @@ public class CanMover : MonoBehaviour
                 }
             }
 
-            IEnumerator ShootDelay(){
-               
-                yield return new WaitForSeconds(timeBetween);
+            IEnumerator ShootDelay()
+            {
+                float elapsed = 0f;
+                while (elapsed < timeBetween)
+                {
+                    elapsed += Time.deltaTime;
+                    float progress = Mathf.Clamp01(elapsed / timeBetween);
+
+                    if (shakeUIManager != null)
+                        shakeUIManager.UpdateDelayProgress(progress);
+
+                    yield return null;
+                }
+
+                if (shakeUIManager != null)
+                    shakeUIManager.UpdateDelayProgress(0f);
+
                 ShootSpray();
                 shook = false;
             }
 
-            
+
             // GetButtonDown checks if a button has been released
             if (j.GetButtonUp(Joycon.Button.SHOULDER_2))
             {

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -19,8 +20,11 @@ public class EnemyManager : MonoBehaviour
     public float spawnZ = 10f;
     public Vector2 spawnXRange = new Vector2(-5f, 5f);
     public float timeBetweenWaves = 3f;
+    public TextMeshProUGUI waveTimerText;
+    public TextMeshProUGUI waveNum;
 
     private int currentWave = 0;
+    private float waveTimer;
 
     public void StartWaves()
     {
@@ -33,6 +37,10 @@ public class EnemyManager : MonoBehaviour
         {
             currentWave++;
             float spawnInterval = Mathf.Max(0.5f, initialSpawnInterval - intervalReductionPerWave * currentWave);
+            waveNum.text = "Wave: " + currentWave.ToString();
+
+            waveTimer = enemiesPerWave * spawnInterval;
+            StartCoroutine(WaveCountdown());
 
             yield return StartCoroutine(SpawnWave(enemiesPerWave, spawnInterval));
             yield return new WaitForSeconds(timeBetweenWaves);
@@ -52,6 +60,17 @@ public class EnemyManager : MonoBehaviour
                 yield return new WaitForSeconds(interval);
             }
         }
+    }
+
+    IEnumerator WaveCountdown()
+    {
+        while (waveTimer > 0)
+        {
+            waveTimer -= Time.deltaTime;
+                waveTimerText.text = $"Wave ends in: {waveTimer:F1}s";
+            yield return null;
+        }
+            waveTimerText.text = "Zombies outside are taking a quick break";
     }
 
     void SpawnEnemy()
@@ -82,7 +101,7 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnBoss()
     {
-        Vector3 pos = new Vector3(0f, 2f, spawnZ);
+        Vector3 pos = new Vector3(0f, 0.8f, spawnZ);
         GameObject boss = Instantiate(enemyPrefab, pos, Quaternion.identity);
         Enemy enemyScript = boss.GetComponent<Enemy>();
         enemyScript.Initialize(bossEnemy, player);

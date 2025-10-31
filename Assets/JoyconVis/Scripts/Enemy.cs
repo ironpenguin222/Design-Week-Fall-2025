@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
         player = playerTransform;
         nameText.text = data.enemyName;
         audios.clip = data.entranceClip;
+        audios.pitch = Random.Range(0.65f, 1.35f);
         
         currentHealth = data.health;
 
@@ -48,7 +49,17 @@ public class Enemy : MonoBehaviour
         }
 
         Vector3 dir = (player.position - transform.position).normalized;
-        transform.position += dir * data.speed * Time.deltaTime;
+
+        Vector3 move = dir * data.speed * Time.deltaTime;
+
+        if (data.zigzag)
+        {
+            Vector3 perpendicular = Vector3.Cross(Vector3.up, dir).normalized;
+            float offset = Mathf.Sin(Time.time * data.zigzagFrequency) * data.zigzagAmplitude;
+            move += perpendicular * offset * Time.deltaTime;
+        }
+
+        transform.position += move;
 
         transform.position = new Vector3(transform.position.x,
             startPos.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight,
@@ -67,7 +78,10 @@ public class Enemy : MonoBehaviour
         {
             PlayerHealth ph = other.GetComponent<PlayerHealth>();
             if (ph != null)
-                ph.TakeDamage(ph.currentHealth);
+                if(data.isBoss)
+                    ph.TakeDamage(ph.currentHealth);
+                else
+                    ph.TakeDamage(1);
             stealing = true;
             StartCoroutine(StealPizza());
             
@@ -99,7 +113,8 @@ public class Enemy : MonoBehaviour
         audios.Play(0);
         if (data.isBoss)
         {
-           PlayerHealth.isWin = true;
+            yield return new WaitForSeconds(1);
+            PlayerHealth.isWin = true;
         }
         yield return new WaitForSeconds(2);
         Destroy(gameObject);

@@ -18,4 +18,8 @@ MonoBehaviour:
   speed: 2
   size: 0.8
   sprite: {fileID: 21300000, guid: 10f2a41d74b8a0848b213433be9dea74, type: 3}
-  entranceClip: {fileID: 8300000, guid: fc7708614b5dabc47a0840b938ac8a79, type: 3}
+  entranceClip: {fileID: 8300000, guid: 47fec3213c3357b4b984fca7fe7ba77f, type: 3}
+  isBoss: 0
+  zigzag: 0
+  zigzagAmplitude: 1
+  zigzagFrequency: 2
