@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f132394e1f03d0543aebc6591aa4134f, type: 3}
   m_Name: 3Valley Girl
   m_EditorClassIdentifier: 
-  enemyName: Girl Zombie
+  enemyName: Valley Girl Zombie
   tier: 3
   health: 60
   speed: 3.5
   size: 0.7
-  sprite: {fileID: 21300000, guid: 10f2a41d74b8a0848b213433be9dea74, type: 3}
+  sprite: {fileID: 21300000, guid: c38d9b929889f1b4c9506265b38d1b8f, type: 3}
   entranceClip: {fileID: 8300000, guid: fdcdbeb67b9af0541ab724d9071f7a63, type: 3}
   isBoss: 0
   zigzag: 0
